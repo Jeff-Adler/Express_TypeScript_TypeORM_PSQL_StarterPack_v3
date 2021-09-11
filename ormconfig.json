@@ -6,11 +6,11 @@
     "port": 5432,
     "username": "jeffadler",
     "password": "",
-    "database": "mentorme_v2_dev",
+    "database": "starterpack_dev",
     "synchronize": true,
     "logging": false,
     "entities": [
-      "src/components/**/model.ts"
+      "src/entity/*.ts"
     ],
     "migrations": [
       "src/migration/**/*.ts"

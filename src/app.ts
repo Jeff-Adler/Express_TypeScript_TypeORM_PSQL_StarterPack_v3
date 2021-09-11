@@ -20,7 +20,6 @@ class App {
     this.port = process.env.PORT || 3000;
     this.env = process.env.NODE_ENV || 'development';
     this.dbConnectionType = process.env.TYPEORM_CONNECTION_TYPE || 'development';
-    Logger.info(this.dbConnectionType);
 
     this.env !== 'testing' && this.connectToDatabase();
     this.initializeMiddlewares();
@@ -39,8 +38,6 @@ class App {
   }
 
   private async connectToDatabase() {
-    Logger.info(this.dbConnectionType);
-
     await createConnection(`${this.dbConnectionType}`);
   }
 
