@@ -9,7 +9,6 @@ export class UserController {
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const users: User[] = await this.userService.findUsers();
-      Logger.info('users');
 
       return res.status(200).send(users);
     } catch (error) {
