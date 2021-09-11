@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
 export interface Routes {
-  path?: string;
-  router: Router;
+  readonly path?: string;
+  readonly router: Router;
 }

@@ -1,16 +1,20 @@
-export class UserService {
-  /**
-   * Retrieve users from db
-   *
-   * Valid query parameters:
-   * ?role=(ADMIN/USER)
-   * ?orderBy=<userField>:<ASC|DESC>
-   * ?skip=(0)
-   * ?take=(10)
-   */
-  findAllUsers() {}
+import { User } from '@entity/user.entity';
+import { EntityTarget, getRepository, Repository } from 'typeorm';
 
-  findOneById() {}
+export class UserService {
+  private readonly userEntity: EntityTarget<User> = User;
+  private readonly userRepository: Repository<User> = getRepository(this.userEntity);
+
+  /**
+   add query params
+   */
+  async findUsers() {
+    const users: User[] = await this.userRepository.find();
+
+    return users;
+  }
+
+  findUserById() {}
 
   findUserByEmail() {}
 
