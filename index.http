@@ -1,0 +1,15 @@
+### Hello World
+
+GET http://localhost:8080/
+
+### Cats
+
+GET http://localhost:3000/cats/
+
+### Logger
+
+GET http://localhost:3000/logger
+
+### Bad request
+
+GET http://localhost:3000/loggeraerger

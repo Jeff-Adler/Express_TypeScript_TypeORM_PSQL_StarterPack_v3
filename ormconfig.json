@@ -1,0 +1,59 @@
+[
+  {
+    "name": "development",
+    "type": "postgres",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "username": "jeffadler",
+    "password": "",
+    "database": "mentorme_v2_dev",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+      "src/components/**/model.ts"
+    ],
+    "migrations": [
+      "src/migration/**/*.ts"
+    ],
+    "migrationsRun": true,
+    "cli": {
+      "migrationsDir": "src/migration"
+    }
+  },
+  {
+    "name": "debugging",
+    "type": "postgres",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "username": "jeff",
+    "password": "",
+    "database": "debug_db",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+      "build/components/**/model.js"
+    ],
+    "migrations": [
+      "build/migration/**/*.js"
+    ],
+    "migrationsRun": true,
+    "cli": {
+      "migrationsDir": "build/migration"
+    }
+  },
+  {
+    "name": "testing",
+    "type": "postgres",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "username": "jeff",
+    "password": "",
+    "database": "mock_db",
+    "dropSchema": true,
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+      "src/components /**/model.ts"
+    ]
+  }
+]
