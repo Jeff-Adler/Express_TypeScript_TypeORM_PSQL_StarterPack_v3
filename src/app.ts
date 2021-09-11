@@ -9,6 +9,7 @@ import { Logger } from '@utils/logger';
 import { catchAllMiddleware } from '@middlewares/catchAllMiddleware';
 import compression from 'compression';
 import { createConnection } from 'typeorm';
+
 class App {
   public app: express.Application;
   public port: string | number;
@@ -19,7 +20,7 @@ class App {
     this.app = express();
     this.port = process.env.PORT || 3000;
     this.env = process.env.NODE_ENV || 'development';
-    this.dbConnectionType = process.env.TYPEORM_CONNECTION_TYPE || 'development';
+    this.dbConnectionType = process.env.DB_CONNECTION_TYPE || 'development';
 
     this.env !== 'testing' && this.connectToDatabase();
     this.initializeMiddlewares();

@@ -9,7 +9,7 @@ export class UserService {
    add query params
    */
   public findUsers = async () => {
-    const userRepository: Repository<User> = getConnection(process.env.TYPEORM_CONNECTION_TYPE).getRepository(
+    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
       this.userEntity
     );
     const users: User[] = await userRepository.find();
