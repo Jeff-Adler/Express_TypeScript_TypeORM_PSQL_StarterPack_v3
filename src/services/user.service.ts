@@ -1,4 +1,5 @@
 import { User } from '@entity/user.entity';
+import { HttpException } from '@exceptions/HttpException';
 import { Logger } from '@utils/logger';
 import { EntityTarget, getConnection, getRepository, Repository } from 'typeorm';
 
@@ -24,7 +25,7 @@ export class UserService {
     const user: User | undefined = await userRepository.findOne(id);
 
     if (!user) {
-      throw new Error('User not found');
+      throw new HttpException(409, 'User not found');
     }
 
     return user;

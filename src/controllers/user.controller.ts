@@ -17,7 +17,8 @@ export class UserController {
   };
 
   public getUserById = async (req: Request, res: Response, next: NextFunction) => {
-    const { id } = req.body;
+    const { id } = req.params;
+    console.log('id: ' + id);
     try {
       const user: User = await this.userService.findUserById(parseInt(id));
 
