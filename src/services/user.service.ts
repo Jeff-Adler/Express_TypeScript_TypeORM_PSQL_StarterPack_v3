@@ -7,7 +7,7 @@ export class UserService {
   /**
    add query params
    */
-  async findUsers() {
+  public async findUsers() {
     const userRepository: Repository<User> = getRepository(this.userEntity);
     const users: User[] = await userRepository.find();
 
