@@ -10,7 +10,7 @@
     "synchronize": true,
     "logging": false,
     "entities": [
-      "src/entity/*.ts"
+      "src/entity/*.entity.ts"
     ],
     "migrations": [
       "src/migration/**/*.ts"
@@ -27,11 +27,11 @@
     "port": 5432,
     "username": "jeff",
     "password": "",
-    "database": "debug_db",
+    "database": "starterpack_debug",
     "synchronize": true,
     "logging": false,
     "entities": [
-      "build/components/**/model.js"
+      "build/entity/*.entity.js"
     ],
     "migrations": [
       "build/migration/**/*.js"
@@ -48,12 +48,12 @@
     "port": 5432,
     "username": "jeff",
     "password": "",
-    "database": "mock_db",
+    "database": "starterpack_test",
     "dropSchema": true,
     "synchronize": true,
     "logging": false,
     "entities": [
-      "src/components /**/model.ts"
+      "src/entity/*.entity.ts"
     ]
   }
 ]
