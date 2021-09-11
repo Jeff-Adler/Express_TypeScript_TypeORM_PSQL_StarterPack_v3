@@ -25,7 +25,7 @@ export class UserService {
     const user: User | undefined = await userRepository.findOne(id);
 
     if (!user) {
-      throw new HttpException(409, 'User not found');
+      throw new HttpException(404, 'User not found');
     }
 
     return user;
