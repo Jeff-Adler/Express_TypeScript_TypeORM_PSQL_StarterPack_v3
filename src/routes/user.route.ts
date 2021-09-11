@@ -13,5 +13,7 @@ export class UserRoutes implements Routes {
 
   private initializeRoutes() {
     this.router.get(`${this.path}`, this.userController.getUsers);
+
+    this.router.get(`${this.path}:id([0-9]+)`, this.userController.getUserById);
   }
 }
