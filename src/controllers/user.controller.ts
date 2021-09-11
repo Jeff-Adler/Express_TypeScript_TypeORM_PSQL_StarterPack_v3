@@ -6,7 +6,7 @@ import { NextFunction, Request, Response } from 'express';
 export class UserController {
   public userService: UserService = new UserService();
 
-  public async getUsers(req: Request, res: Response, next: NextFunction) {
+  public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const users: User[] = await this.userService.findUsers();
       Logger.info('users');
@@ -15,5 +15,5 @@ export class UserController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 }
