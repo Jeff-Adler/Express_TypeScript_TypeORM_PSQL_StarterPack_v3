@@ -3,6 +3,7 @@ import { Logger } from '@/utils/logger';
 import { UserService } from '@services/user.service';
 import { NextFunction, Request, Response } from 'express';
 import { HttpException } from '@exceptions/HttpException';
+import { validationResult } from 'express-validator';
 
 export class UserController {
   public userService: UserService = new UserService();
@@ -29,12 +30,13 @@ export class UserController {
   };
 
   public getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     try {
       const { email } = req.query;
-      Logger.debug(email);
-      if (!email) {
-        throw new HttpException(404, 'Invalid search query');
-      }
       const [user] = await this.userService.findUserByEmail(email);
 
       return res.status(200).send(user);
