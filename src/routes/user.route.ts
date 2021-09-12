@@ -17,11 +17,7 @@ export class UserRoutes implements Routes {
 
     this.router.get(`${this.path}:id([0-9]+)`, param('id').isInt(), this.userController.getUserById);
 
-    this.router.get(
-      `${this.path}search`,
-      query('email', 'invalid query').exists().isEmail().normalizeEmail(),
-      this.userController.getUserByEmail
-    );
+    this.router.get(`${this.path}search`, query('email').exists().isEmail(), this.userController.getUserByEmail);
 
     this.router.post(`${this.path}`, this.userController.createUser);
 
