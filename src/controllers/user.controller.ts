@@ -2,6 +2,7 @@ import { User } from '@entity/user.entity';
 import { Logger } from '@/utils/logger';
 import { UserService } from '@services/user.service';
 import { NextFunction, Request, Response } from 'express';
+import { HttpException } from '@exceptions/HttpException';
 
 export class UserController {
   public userService: UserService = new UserService();
@@ -18,7 +19,6 @@ export class UserController {
 
   public getUserById = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    console.log('id: ' + id);
     try {
       const user: User = await this.userService.findUserById(parseInt(id));
 
@@ -28,7 +28,19 @@ export class UserController {
     }
   };
 
-  public getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {};
+  public getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {
+    const { email } = req.query;
+    if (!email) {
+      throw new HttpException(404, 'Invalid search query');
+    }
+    try {
+      const [user] = await this.userService.findUserByEmail(email);
+
+      return res.status(200).send(user);
+    } catch (error) {
+      next(error);
+    }
+  };
 
   public createUser = async (req: Request, res: Response, next: NextFunction) => {};
 

@@ -25,13 +25,24 @@ export class UserService {
     const user: User | undefined = await userRepository.findOne(id);
 
     if (!user) {
-      throw new HttpException(404, 'User not found');
+      throw new HttpException(404, `User of ${id} not found`);
     }
 
     return user;
   };
 
-  findUserByEmail = async () => {};
+  findUserByEmail = async (email: string): Promise<User[]> => {
+    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
+      this.userEntity
+    );
+    const users: User[] = await userRepository.find({ email });
+
+    if (!users.length) {
+      throw new HttpException(404, `User of ${email} not found`);
+    }
+
+    return users;
+  };
 
   createUser = async () => {};
 
