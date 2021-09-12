@@ -30,6 +30,7 @@ export class UserController {
 
   public getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {
     const { email } = req.query;
+    Logger.debug(email);
     if (!email) {
       throw new HttpException(404, 'Invalid search query');
     }

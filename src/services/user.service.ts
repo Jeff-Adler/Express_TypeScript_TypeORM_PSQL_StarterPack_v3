@@ -25,7 +25,7 @@ export class UserService {
     const user: User | undefined = await userRepository.findOne(id);
 
     if (!user) {
-      throw new HttpException(404, `User of ${id} not found`);
+      throw new HttpException(404, `User of id ${id} not found`);
     }
 
     return user;
@@ -38,7 +38,7 @@ export class UserService {
     const users: User[] = await userRepository.find({ email });
 
     if (!users.length) {
-      throw new HttpException(404, `User of ${email} not found`);
+      throw new HttpException(404, `User of email ${email} not found`);
     }
 
     return users;

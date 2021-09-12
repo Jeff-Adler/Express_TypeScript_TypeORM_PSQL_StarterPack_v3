@@ -4,4 +4,8 @@ GET http://localhost:8080/users/
 
 ### Retrieve user by Id
 
-GET http://localhost:8080/users/4
+GET http://localhost:8080/users/3
+
+### Retrieve user by email
+
+GET http://localhost:8080/users/search?email=jeff@test.com
