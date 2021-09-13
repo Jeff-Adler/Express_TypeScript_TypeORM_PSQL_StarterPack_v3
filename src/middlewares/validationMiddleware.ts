@@ -27,9 +27,7 @@ export const validationMiddleware = (dto: any, requestProperty: requestProperty)
       next();
     } catch (errors) {
       next(new HttpException(404, 'Invalid request'));
-      Logger.error(
-        `[${req.method}] ${req.path} >> StatusCode:: 404, Message:: { errors: ${JSON.stringify(errors.array())}`
-      );
+      Logger.error(`[${req.method}] ${req.path} >> StatusCode:: 404, Message:: { errors: ${JSON.stringify(errors)}`);
     }
   };
 };

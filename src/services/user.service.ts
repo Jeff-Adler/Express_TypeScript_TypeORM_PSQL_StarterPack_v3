@@ -44,7 +44,14 @@ export class UserService {
     return users;
   };
 
-  createUser = async () => {};
+  createUser = async (email: string, password: string) => {
+    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
+      this.userEntity
+    );
+    const user = userRepository.create({ email, password });
+
+    return userRepository.save(user);
+  };
 
   updateUser = async () => {};
 

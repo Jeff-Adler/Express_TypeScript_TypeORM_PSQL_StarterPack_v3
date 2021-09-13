@@ -40,7 +40,16 @@ export class UserController {
     }
   };
 
-  public createUser = async (req: Request, res: Response, next: NextFunction) => {};
+  public createUser = async (req: Request, res: Response, next: NextFunction) => {
+    const { email, password } = req.body;
+    try {
+      const user = await this.userService.createUser(email, password);
+
+      return res.status(200).send(user);
+    } catch (error) {
+      next(error);
+    }
+  };
 
   public updateUser = async (req: Request, res: Response, next: NextFunction) => {};
 

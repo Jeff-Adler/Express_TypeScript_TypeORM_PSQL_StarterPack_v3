@@ -4,12 +4,32 @@ GET http://localhost:8080/users/
 
 ### Retrieve user by Id
 
-GET http://localhost:8080/users/3
+GET http://localhost:8080/users/65
 
-### Retrieve user by email: valid requests
+### Retrieve user by email: valid request
 
 GET http://localhost:8080/users/search?email=TEST@test.com
 
 ### Retrieve user by email: invalid request
 
 GET http://localhost:8080/users/search?email=testtest.com
+
+### Create new user: valid request
+
+POST http://localhost:8080/users/
+Content-Type: application/json
+
+{
+  "email" : "jeff@test.com",
+  "password" : "12345678"
+}
+
+### Create new user: ivalid request
+
+POST http://localhost:8080/users/
+Content-Type: application/json
+
+{
+  "email" : "test@test.com",
+  "password" : "12345678"
+}

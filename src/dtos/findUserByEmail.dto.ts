@@ -1,7 +1,7 @@
 import { Expose } from 'class-transformer';
 import { IsEmail } from 'class-validator';
 
-export class findUserByEmailDto {
+export class FindUserByEmailDto {
   @Expose()
   @IsEmail()
   email!: string;

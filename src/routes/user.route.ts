@@ -3,8 +3,9 @@ import { Routes } from '@interfaces/routes.interface';
 import { UserController } from '@controllers/user.controller';
 import { check } from 'express-validator';
 import { validationMiddleware } from '@middlewares/validationMiddleware';
-import { findUserByEmailDto } from '@dtos/findUserByEmail.dto';
+import { FindUserByEmailDto } from '@dtos/findUserByEmail.dto';
 import { normalizeEmailMiddleware } from '@middlewares/normalizeEmailMiddleware';
+import { CreateUserDto } from '@dtos/createUser.dto';
 
 export class UserRoutes implements Routes {
   readonly path: string = '/';
@@ -22,11 +23,15 @@ export class UserRoutes implements Routes {
 
     this.router.get(
       `${this.path}search`,
-      [validationMiddleware(findUserByEmailDto, 'query'), normalizeEmailMiddleware('query')],
+      [validationMiddleware(FindUserByEmailDto, 'query'), normalizeEmailMiddleware('query')],
       this.userController.getUserByEmail
     );
 
-    this.router.post(`${this.path}`, this.userController.createUser);
+    this.router.post(
+      `${this.path}`,
+      [validationMiddleware(CreateUserDto, 'body'), normalizeEmailMiddleware('body')],
+      this.userController.createUser
+    );
 
     this.router.patch(`${this.path}:id([0-9]+)`, this.userController.updateUser);
 
