@@ -1,7 +1,8 @@
 import { Router, Request, Response } from 'express';
 import { Routes } from '@interfaces/routes.interface';
 import { UserController } from '@controllers/user.controller';
-import { param, query } from 'express-validator';
+import { query } from 'express-validator';
+import { validatioMiddleware } from '@middlewares/validationMiddleware';
 
 export class UserRoutes implements Routes {
   readonly path: string = '/';
@@ -19,7 +20,7 @@ export class UserRoutes implements Routes {
 
     this.router.get(
       `${this.path}search`,
-      query('email').exists().isEmail().normalizeEmail(),
+      [query('email').exists().isEmail().normalizeEmail(), validatioMiddleware],
       this.userController.getUserByEmail
     );
 
