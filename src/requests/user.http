@@ -8,4 +8,4 @@ GET http://localhost:8080/users/3
 
 ### Retrieve user by email
 
-GET http://localhost:8080/users/search?email=JEff@test.com
+GET http://localhost:8080/users/search?email=JEf

@@ -19,15 +19,9 @@ export class UserRoutes implements Routes {
 
     this.router.get(`${this.path}:id([0-9]+)`, this.userController.getUserById);
 
-    // this.router.get(
-    //   `${this.path}search`,
-    //   [query('email').exists().isEmail().normalizeEmail(), validationMiddleware, check('email').normalizeEmail()],
-    //   this.userController.getUserByEmail
-    // );
-
     this.router.get(
       `${this.path}search`,
-      [dtoValidationMiddleware(findUserByEmailDto, 'query'), check('email').normalizeEmail()],
+      [validationMiddleware(findUserByEmailDto, 'query'), check('email').normalizeEmail()],
       this.userController.getUserByEmail
     );
 
