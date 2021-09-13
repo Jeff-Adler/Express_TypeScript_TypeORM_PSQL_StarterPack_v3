@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { Routes } from '@interfaces/routes.interface';
 import { UserController } from '@controllers/user.controller';
-import { check, query } from 'express-validator';
-import { dtoValidationMiddleware, validationMiddleware } from '@middlewares/validationMiddleware';
+import { check } from 'express-validator';
+import { validationMiddleware } from '@middlewares/validationMiddleware';
 import { findUserByEmailDto } from '@dtos/findUserByEmail.dto';
 
 export class UserRoutes implements Routes {
