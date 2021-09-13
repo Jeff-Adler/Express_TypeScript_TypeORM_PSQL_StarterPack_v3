@@ -13,7 +13,7 @@
       "src/entity/*.entity.ts"
     ],
     "migrations": [
-      "src/migration/**/*.ts"
+      "src/database/migration/*.ts"
     ],
     "migrationsRun": true,
     "cli": {
@@ -61,7 +61,7 @@
     "type": "postgres",
     "host": "127.0.0.1",
     "port": 5432,
-    "username": "jeff",
+    "username": "jeffadler",
     "password": "",
     "database": "starterpack_dev",
     "dropSchema": true,
