@@ -50,7 +50,10 @@ export class UserService {
     );
     const user = userRepository.create({ email, password });
 
-    return userRepository.save(user);
+    await userRepository.save(user);
+
+    // Necessary extra step to hide password
+    return this.findUserById(user.id);
   };
 
   updateUser = async () => {};
