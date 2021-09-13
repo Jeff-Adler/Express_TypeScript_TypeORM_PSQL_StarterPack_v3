@@ -30,12 +30,6 @@ export class UserController {
   };
 
   public getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {
-    // it would be better if we never got here! Hence, making separate middleware
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-
     const { email } = req.query;
     try {
       const [user] = await this.userService.findUserByEmail(`${email}`);

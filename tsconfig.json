@@ -36,7 +36,7 @@
     "paths": {
       "@controllers/*": ["controllers/*"],
       // "@databases": ["databases"],
-      // "@dtos/*": ["dtos/*"],
+      "@dtos/*": ["dtos/*"],
       "@entity/*": ["entity/*"],
       "@exceptions/*": ["exceptions/*"],
       "@interfaces/*": ["interfaces/*"],

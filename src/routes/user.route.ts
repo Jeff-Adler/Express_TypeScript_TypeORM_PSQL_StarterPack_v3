@@ -1,8 +1,9 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import { Routes } from '@interfaces/routes.interface';
 import { UserController } from '@controllers/user.controller';
-import { query } from 'express-validator';
-import { validatioMiddleware } from '@middlewares/validationMiddleware';
+import { check, query } from 'express-validator';
+import { dtoValidationMiddleware, validationMiddleware } from '@middlewares/validationMiddleware';
+import { findUserByEmailDto } from '@dtos/findUserByEmail.dto';
 
 export class UserRoutes implements Routes {
   readonly path: string = '/';
@@ -18,9 +19,15 @@ export class UserRoutes implements Routes {
 
     this.router.get(`${this.path}:id([0-9]+)`, this.userController.getUserById);
 
+    // this.router.get(
+    //   `${this.path}search`,
+    //   [query('email').exists().isEmail().normalizeEmail(), validationMiddleware, check('email').normalizeEmail()],
+    //   this.userController.getUserByEmail
+    // );
+
     this.router.get(
       `${this.path}search`,
-      [query('email').exists().isEmail().normalizeEmail(), validatioMiddleware],
+      [dtoValidationMiddleware(findUserByEmailDto, 'query'), check('email').normalizeEmail()],
       this.userController.getUserByEmail
     );
 
