@@ -55,26 +55,5 @@
     "entities": [
       "src/entity/*.entity.ts"
     ]
-  },
-  {
-    "name": "seed_dev",
-    "type": "postgres",
-    "host": "127.0.0.1",
-    "port": 5432,
-    "username": "jeffadler",
-    "password": "",
-    "database": "starterpack_dev",
-    "dropSchema": true,
-    "synchronize": true,
-    "logging": false,
-    "entities": [
-      "src/entity/*.entity.ts"
-    ],
-    "migrations": [
-      "src/database/seeds/*.ts"
-    ],
-    "cli": {
-      "migrationsDir": "src/database/seeds"
-    }
   }
 ]
