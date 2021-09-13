@@ -8,7 +8,8 @@ export const normalizeEmailMiddleware = (requestProperty: requestProperty) => {
     const { email } = req[requestProperty];
     try {
       const normalizedEmail = normalizeEmailAddress(`${email}`);
-      req[requestProperty] = normalizedEmail;
+      req[requestProperty].email = normalizedEmail;
+      console.log(req[requestProperty].email);
       next();
     } catch (error) {
       next(new HttpException(404, 'Invalid query'));

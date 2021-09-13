@@ -6,6 +6,10 @@ GET http://localhost:8080/users/
 
 GET http://localhost:8080/users/3
 
-### Retrieve user by email
+### Retrieve user by email: valid requests
 
-GET http://localhost:8080/users/search?email=JEf
+GET http://localhost:8080/users/search?email=test@test.com
+
+### Retrieve user by email: invalid request
+
+GET http://localhost:8080/users/search?email=testtest.com
