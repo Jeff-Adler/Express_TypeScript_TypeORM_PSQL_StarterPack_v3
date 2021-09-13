@@ -8,7 +8,7 @@ GET http://localhost:8080/users/3
 
 ### Retrieve user by email: valid requests
 
-GET http://localhost:8080/users/search?email=test@test.com
+GET http://localhost:8080/users/search?email=TEST@test.com
 
 ### Retrieve user by email: invalid request
 
