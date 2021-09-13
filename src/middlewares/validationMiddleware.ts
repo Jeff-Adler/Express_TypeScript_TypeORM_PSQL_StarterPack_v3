@@ -4,6 +4,7 @@ import { plainToClass } from 'class-transformer';
 import { validate, validateOrReject } from 'class-validator';
 import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator';
+import { requestProperty } from '@customTypes/requestProperty.type';
 
 // export const validationMiddleware = (req: Request, res: Response, next: NextFunction) => {
 //   const errors = validationResult(req);
@@ -18,7 +19,7 @@ import { validationResult } from 'express-validator';
 //   }
 // };
 
-export const validationMiddleware = (dto: any, requestProperty: 'body' | 'header' | 'param' | 'query') => {
+export const validationMiddleware = (dto: any, requestProperty: requestProperty) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const dtoClass = plainToClass(dto, req[requestProperty]);
     try {
