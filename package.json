@@ -5,6 +5,9 @@
   "main": "server.ts",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register -r dotenv/config src/server.ts dotenv_config_path=src/configs/.env.development",
+    "seed:generate": "ts-node-dev typeorm migration:generate -c seed_dev -n ",
+    "seed:run": "ts-node-dev typeorm migration:run -c seed_dev",
+    "seed:revert": "ts-node-dev typeorm migration:revert -c seed_dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

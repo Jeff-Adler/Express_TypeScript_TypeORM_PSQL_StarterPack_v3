@@ -17,7 +17,7 @@
     ],
     "migrationsRun": true,
     "cli": {
-      "migrationsDir": "src/migration"
+      "migrationsDir": "src/database/migration"
     }
   },
   {
@@ -38,7 +38,7 @@
     ],
     "migrationsRun": true,
     "cli": {
-      "migrationsDir": "build/migration"
+      "migrationsDir": "build/database/migration"
     }
   },
   {
@@ -55,5 +55,26 @@
     "entities": [
       "src/entity/*.entity.ts"
     ]
+  },
+  {
+    "name": "seed_dev",
+    "type": "postgres",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "username": "jeff",
+    "password": "",
+    "database": "starterpack_dev",
+    "dropSchema": true,
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+      "src/entity/*.entity.ts"
+    ],
+    "migrations": [
+      "src/database/seeds/*.ts"
+    ],
+    "cli": {
+      "migrationsDir": "src/database/seeds"
+    }
   }
 ]
