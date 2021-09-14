@@ -53,9 +53,8 @@ export class UserController {
 
   public updateUser = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
-    const [...attrs] = req.body;
     try {
-      const user = await this.userService.updateUser(parseInt(id), attrs);
+      const user = await this.userService.updateUser(parseInt(id), req.body);
 
       return res.status(200).send(user);
     } catch (error) {

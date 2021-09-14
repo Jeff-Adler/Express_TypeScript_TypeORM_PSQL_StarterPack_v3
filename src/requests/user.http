@@ -4,7 +4,7 @@ GET http://localhost:8080/users/
 
 ### Retrieve user by Id
 
-GET http://localhost:8080/users/65
+GET http://localhost:8080/users/111
 
 ### Retrieve user by email: valid request
 
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 ### Patch user: valid request
 
-PATCH http://localhost:8080/users/111
+PATCH http://localhost:8080/users/133
 Content-Type: application/json
 
 {
