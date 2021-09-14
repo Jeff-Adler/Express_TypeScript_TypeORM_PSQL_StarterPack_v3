@@ -13,11 +13,11 @@
       "src/entity/*.entity.ts"
     ],
     "migrations": [
-      "src/database/migration/*.ts"
+      "src/migration/*.ts"
     ],
     "migrationsRun": true,
     "cli": {
-      "migrationsDir": "src/database/migration"
+      "migrationsDir": "src/migration"
     }
   },
   {
@@ -38,7 +38,7 @@
     ],
     "migrationsRun": true,
     "cli": {
-      "migrationsDir": "build/database/migration"
+      "migrationsDir": "build/migration"
     }
   },
   {

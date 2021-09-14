@@ -40,9 +40,9 @@ export class User implements IUser {
     await validateOrReject(this);
   }
 
-  @BeforeInsert()
-  @BeforeUpdate()
-  normalizeEmail = () => {
-    normalizeEmailAddress(this.email);
-  };
+  // @BeforeInsert()
+  // @BeforeUpdate()
+  // normalizeEmail = () => {
+  //   normalizeEmailAddress(this.email);
+  // };
 }

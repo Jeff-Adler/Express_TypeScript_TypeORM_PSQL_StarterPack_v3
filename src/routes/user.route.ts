@@ -6,6 +6,7 @@ import { validationMiddleware } from '@middlewares/validationMiddleware';
 import { FindUserByEmailDto } from '@dtos/findUserByEmail.dto';
 import { normalizeEmailMiddleware } from '@middlewares/normalizeEmailMiddleware';
 import { CreateUserDto } from '@dtos/createUser.dto';
+import { UpdateUserDto } from '@dtos/updateUser.dto';
 
 export class UserRoutes implements Routes {
   readonly path: string = '/';
@@ -27,13 +28,13 @@ export class UserRoutes implements Routes {
       this.userController.getUserByEmail
     );
 
-    this.router.post(
-      `${this.path}`,
-      [validationMiddleware(CreateUserDto, 'body'), normalizeEmailMiddleware('body')],
-      this.userController.createUser
-    );
+    this.router.post(`${this.path}`, [validationMiddleware(CreateUserDto, 'body')], this.userController.createUser);
 
-    this.router.patch(`${this.path}:id([0-9]+)`, this.userController.updateUser);
+    this.router.patch(
+      `${this.path}:id([0-9]+)`,
+      [validationMiddleware(UpdateUserDto, 'body')],
+      this.userController.updateUser
+    );
 
     this.router.delete(`${this.path}:id([0-9]+)`, this.userController.deleteUser);
   }
