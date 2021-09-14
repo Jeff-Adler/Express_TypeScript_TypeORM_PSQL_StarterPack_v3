@@ -8,7 +8,7 @@ GET http://localhost:8080/users/65
 
 ### Retrieve user by email: valid request
 
-GET http://localhost:8080/users/search?email=TEST@test.com
+GET http://localhost:8080/users/search?email=jeff@test.com
 
 ### Retrieve user by email: invalid request
 
@@ -20,7 +20,7 @@ POST http://localhost:8080/users/
 Content-Type: application/json
 
 {
-  "email" : "jeffstaergeraerghff@test.com",
+  "email" : "jeff@test.com",
   "password" : "12345678"
 }
 
@@ -32,4 +32,13 @@ Content-Type: application/json
 {
   "email" : "test@test.com",
   "password" : "12345678"
+}
+
+### Patch user: valid request
+
+PATCH http://localhost:8080/users/111
+Content-Type: application/json
+
+{
+  "email" : "jeff2@test.com"
 }
