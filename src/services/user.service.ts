@@ -69,10 +69,13 @@ export class UserService {
 
     // We use this in lieu of .update, because .update doesn't trigger TypeORM entity lifecycle hooks.
     Object.assign(user, attrs);
+    try {
+      await userRepository.save(user);
 
-    await userRepository.save(user);
-
-    return userRepository.findOne(user.id);
+      return userRepository.findOne(user.id);
+    } catch (error) {
+      throw new HttpException(404, error);
+    }
   };
 
   deleteUser = async () => {};
