@@ -43,6 +43,6 @@ export class User implements IUser {
   @BeforeInsert()
   @BeforeUpdate()
   normalizeEmail = () => {
-    normalizeEmailAddress(this.email);
+    this.email = normalizeEmailAddress(this.email);
   };
 }

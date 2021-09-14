@@ -4,7 +4,7 @@ GET http://localhost:8080/users/
 
 ### Retrieve user by Id
 
-GET http://localhost:8080/users/111
+GET http://localhost:8080/users/133
 
 ### Retrieve user by email: valid request
 
@@ -20,7 +20,7 @@ POST http://localhost:8080/users/
 Content-Type: application/json
 
 {
-  "email" : "jeff9@test.com",
+  "email" : "jeff@test.com",
   "password" : "12345678"
 }
 
@@ -40,5 +40,5 @@ PATCH http://localhost:8080/users/133
 Content-Type: application/json
 
 {
-  "email" : "jeff@test.com"
+  "email" : "jeff9@test.com"
 }
