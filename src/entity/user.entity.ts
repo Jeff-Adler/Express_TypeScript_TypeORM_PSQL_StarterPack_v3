@@ -9,7 +9,7 @@ import {
   BeforeUpdate
 } from 'typeorm';
 import { IUser } from '@interfaces/user.interface';
-import { IsEmail, MinLength, validateOrReject } from 'class-validator';
+import { IsEmail, MinLength } from 'class-validator';
 import { normalizeEmailAddress } from '@utils/normalizeEmailAddress';
 
 @Entity()
@@ -40,9 +40,9 @@ export class User implements IUser {
   //   await validateOrReject(this);
   // }
 
-  @BeforeInsert()
   @BeforeUpdate()
-  normalizeEmail = () => {
+  @BeforeInsert()
+  normalizeEmail() {
     this.email = normalizeEmailAddress(this.email);
-  };
+  }
 }

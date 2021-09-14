@@ -69,6 +69,7 @@ export class UserService {
 
     // We use this in lieu of .update, because .update doesn't trigger TypeORM entity lifecycle hooks.
     Object.assign(user, attrs);
+    console.log(user);
 
     try {
       await userRepository.save(user);
