@@ -61,6 +61,7 @@ export class UserService {
     const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
       this.userEntity
     );
+
     const user: User | undefined = await userRepository.findOne(id);
 
     if (!user) {
@@ -69,7 +70,6 @@ export class UserService {
 
     // We use this in lieu of .update, because .update doesn't trigger TypeORM entity lifecycle hooks.
     Object.assign(user, attrs);
-    console.log(user);
 
     try {
       await userRepository.save(user);
@@ -80,5 +80,23 @@ export class UserService {
     }
   };
 
-  deleteUser = async () => {};
+  deleteUser = async (id: number) => {
+    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
+      this.userEntity
+    );
+
+    const user: User | undefined = await userRepository.findOne(id);
+
+    if (!user) {
+      throw new HttpException(404, `User of id ${id} not found`);
+    }
+
+    try {
+      await userRepository.delete(user);
+
+      return user;
+    } catch (error) {
+      throw new HttpException(404, error);
+    }
+  };
 }
