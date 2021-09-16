@@ -62,5 +62,12 @@ export class UserController {
     }
   };
 
-  public deleteUser = async (req: Request, res: Response, next: NextFunction) => {};
+  public deleteUser = async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    try {
+      const user: User = await this.userService.findUserById(parseInt(id));
+    } catch (error) {
+      next(error);
+    }
+  };
 }

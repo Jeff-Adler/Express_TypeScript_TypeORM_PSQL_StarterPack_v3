@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { Routes } from '@interfaces/routes.interface';
 import { UserController } from '@controllers/user.controller';
-import { check } from 'express-validator';
 import { validationMiddleware } from '@middlewares/validationMiddleware';
 import { FindUserByEmailDto } from '@dtos/findUserByEmail.dto';
 import { normalizeEmailMiddleware } from '@middlewares/normalizeEmailMiddleware';
