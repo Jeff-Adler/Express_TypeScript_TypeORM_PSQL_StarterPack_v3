@@ -63,7 +63,7 @@ export class UserController {
   public deleteUser = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params;
     try {
-      const user: User = await this.userService.deleteUser(id);
+      const user: User = await this.userService.deleteUser(parseInt(id));
 
       return res.status(200).send(user);
     } catch (error) {

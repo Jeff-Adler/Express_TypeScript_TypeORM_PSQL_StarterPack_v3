@@ -4,7 +4,7 @@ GET http://localhost:8080/users/
 
 ### Retrieve user by Id
 
-GET http://localhost:8080/users/140
+GET http://localhost:8080/users/117
 
 ### Retrieve user by email: valid request
 
@@ -42,3 +42,7 @@ Content-Type: application/json
 {
   "email" : "JEFFFFFVSvaervFV9@test.com"
 }
+
+### Delete user
+
+DELETE http://localhost:8080/users/117
