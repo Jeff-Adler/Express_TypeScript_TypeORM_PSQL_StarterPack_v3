@@ -1,10 +1,17 @@
 ### Retrieve all users
 
+
+
 GET http://localhost:8080/users/
+
+
 
 ### Retrieve user by Id
 
+
+
 GET http://localhost:8080/users/117
+
 
 ### Retrieve user by email: valid request
 

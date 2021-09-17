@@ -92,7 +92,7 @@ export class UserService {
     }
 
     try {
-      await userRepository.delete(user);
+      await userRepository.delete(id);
 
       return user;
     } catch (error) {
