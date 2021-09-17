@@ -9,7 +9,7 @@ const config = convict({
     default: 'development',
     env: 'NODE_ENV'
   },
-  ip: {
+  ip_address: {
     doc: 'The IP address to bind.',
     format: 'ipaddress',
     default: '127.0.0.1',
@@ -23,7 +23,7 @@ const config = convict({
     arg: 'port'
   },
   db: {
-    connectionName: {
+    connection_name: {
       doc: 'TypeORM connection name',
       format: String,
       default: 'development',
@@ -54,20 +54,18 @@ const config = convict({
       env: 'DB_PASSWORD',
       sensitive: true
     },
-    dbName: {
+    name: {
       doc: 'Database name',
       format: String,
       default: 'users',
-      env: 'DB_NAME'
+      env: 'NAME'
     }
   }
 });
 
-// Load environment dependent configuration
 const env = config.get('env');
-config.loadFile('./config/' + env + '.json');
+config.loadFile(`./config/${env}.json`);
 
-// Perform validation
 config.validate({ allowed: 'strict' });
 
-module.exports = config.getProperties();
+module.exports = config;

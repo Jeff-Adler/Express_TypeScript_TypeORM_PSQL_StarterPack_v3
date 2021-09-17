@@ -1,3 +1,4 @@
+const config = require('../config.js');
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -18,7 +19,7 @@ class App {
 
   public constructor() {
     this.app = express();
-    this.port = process.env.PORT || 3000;
+    this.port = config.get('port') || 3000;
     this.env = process.env.NODE_ENV || 'development';
     this.dbConnectionType = process.env.DB_CONNECTION_TYPE || 'development';
 
