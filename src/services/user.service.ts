@@ -1,28 +1,24 @@
+const config = require('@/config.js');
 import { User } from '@entity/user.entity';
 import { HttpException } from '@exceptions/HttpException';
-import { Logger } from '@utils/logger';
-import { exception } from 'console';
 import { EntityTarget, getConnection, getRepository, Repository } from 'typeorm';
 
 export class UserService {
   private readonly userEntity: EntityTarget<User> = User;
+  private readonly dbConnectionName = config['db.connection_name'];
 
   /**
    add query params
    */
   public findUsers = async (): Promise<User[]> => {
-    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
-      this.userEntity
-    );
+    const userRepository: Repository<User> = getConnection(this.dbConnectionName).getRepository(this.userEntity);
     const users: User[] = await userRepository.find();
 
     return users;
   };
 
   public findUserById = async (id: number): Promise<User> => {
-    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
-      this.userEntity
-    );
+    const userRepository: Repository<User> = getConnection(this.dbConnectionName).getRepository(this.userEntity);
     const user: User | undefined = await userRepository.findOne(id);
 
     if (!user) {
@@ -33,9 +29,7 @@ export class UserService {
   };
 
   findUserByEmail = async (email: string): Promise<User[]> => {
-    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
-      this.userEntity
-    );
+    const userRepository: Repository<User> = getConnection(this.dbConnectionName).getRepository(this.userEntity);
     const users: User[] = await userRepository.find({ email });
 
     if (!users.length) {
@@ -46,9 +40,7 @@ export class UserService {
   };
 
   createUser = async (email: string, password: string) => {
-    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
-      this.userEntity
-    );
+    const userRepository: Repository<User> = getConnection(this.dbConnectionName).getRepository(this.userEntity);
     let user = userRepository.create({ email, password });
 
     await userRepository.save(user);
@@ -58,9 +50,7 @@ export class UserService {
   };
 
   updateUser = async (id: number, attrs: Partial<User>) => {
-    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
-      this.userEntity
-    );
+    const userRepository: Repository<User> = getConnection(this.dbConnectionName).getRepository(this.userEntity);
 
     const user: User | undefined = await userRepository.findOne(id);
 
@@ -81,9 +71,7 @@ export class UserService {
   };
 
   deleteUser = async (id: number) => {
-    const userRepository: Repository<User> = getConnection(process.env.DB_CONNECTION_TYPE).getRepository(
-      this.userEntity
-    );
+    const userRepository: Repository<User> = getConnection(this.dbConnectionName).getRepository(this.userEntity);
 
     const user: User | undefined = await userRepository.findOne(id);
 

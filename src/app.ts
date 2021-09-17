@@ -1,4 +1,4 @@
-const config = require('../config.js');
+const config = require('@/config.js');
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -15,13 +15,13 @@ class App {
   public app: express.Application;
   public port: string | number;
   public env: string;
-  public dbConnectionType: string;
+  public dbConnectionName: string;
 
   public constructor() {
     this.app = express();
-    this.port = config.get('port') || 3000;
-    this.env = process.env.NODE_ENV || 'development';
-    this.dbConnectionType = process.env.DB_CONNECTION_TYPE || 'development';
+    this.port = config['port'] || 3000;
+    this.env = config['env'] || 'development';
+    this.dbConnectionName = config['db.connection_name'] || 'development';
 
     this.env !== 'testing' && this.connectToDatabase();
     this.initializeMiddlewares();
@@ -33,14 +33,14 @@ class App {
     this.app.listen(this.port, () => {
       Logger.info(`=================================`);
       Logger.info(`======= ENV: ${this.env} =======`);
-      Logger.info(`======= DB: ${this.dbConnectionType} =======`);
+      Logger.info(`======= DB: ${this.dbConnectionName} =======`);
       Logger.info(`🚀 App listening on port ${this.port}`);
       Logger.info(`=================================`);
     });
   }
 
   private async connectToDatabase() {
-    await createConnection(`${this.dbConnectionType}`);
+    await createConnection(`${this.dbConnectionName}`);
   }
 
   private initializeMiddlewares() {

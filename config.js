@@ -51,8 +51,7 @@ const config = convict({
       doc: 'Database password',
       format: String,
       default: '',
-      env: 'DB_PASSWORD',
-      sensitive: true
+      env: 'DB_PASSWORD'
     },
     name: {
       doc: 'Database name',
@@ -68,4 +67,4 @@ config.loadFile(`./config/${env}.json`);
 
 config.validate({ allowed: 'strict' });
 
-module.exports = config;
+module.exports = config.getProperties();
