@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, `./envs/.env.${process.env.ENVIRONMENT}`) });
 const convict = require('convict');
 
 const config = convict({
@@ -63,6 +64,7 @@ const config = convict({
 
 // Load environment dependent configuration
 const env = config.get('env');
+config.loadFile('./config/' + env + '.json');
 
 // Perform validation
 config.validate({ allowed: 'strict' });
