@@ -18,6 +18,7 @@ class App {
   public dbConnectionName: string;
 
   public constructor() {
+    console.log(config['db']['port']);
     this.app = express();
     this.port = config['port'] || 3000;
     this.env = config['env'] || 'development';
