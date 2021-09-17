@@ -5,7 +5,7 @@ import { EntityTarget, getConnection, getRepository, Repository } from 'typeorm'
 
 export class UserService {
   private readonly userEntity: EntityTarget<User> = User;
-  private readonly dbConnectionName = config['db.connection_name'];
+  private readonly dbConnectionName = config['db']['connection_name'];
 
   /**
    add query params
