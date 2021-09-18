@@ -7,11 +7,11 @@ export class dbConnection {
   private constructor() {}
 
   public static CreateDbConnection = async () => {
-    const dbConnection = new dbConnection();
+    const connection = new dbConnection();
 
-    dbConnection.connection = await dbConnection.CreateConnection();
+    connection.connection = await connection.CreateConnection();
 
-    return dbConnection;
+    return connection;
   };
 
   private async CreateConnection() {
