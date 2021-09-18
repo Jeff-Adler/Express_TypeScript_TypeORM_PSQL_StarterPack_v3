@@ -2,12 +2,20 @@ const config = require('@/config.js');
 import { createConnection, Connection } from 'typeorm';
 
 export class dbConnection {
-  constructor() {
-    this.createConnection();
-  }
+  private connection!: Connection;
 
-  async createConnection() {
-    const connection = await createConnection({
+  private constructor() {}
+
+  public static CreateDbConnection = async () => {
+    const dbConnection = new dbConnection();
+
+    dbConnection.connection = await dbConnection.CreateConnection();
+
+    return dbConnection;
+  };
+
+  private async CreateConnection() {
+    return createConnection({
       name: config['db']['connection_name'],
       type: 'postgres',
       host: config['db']['host'],
@@ -16,5 +24,9 @@ export class dbConnection {
       password: config['db']['password'],
       database: config['db']['name']
     });
+  }
+
+  public getConnection() {
+    return this.connection;
   }
 }
