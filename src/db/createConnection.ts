@@ -8,12 +8,13 @@ export class dbConnection {
 
   async createConnection() {
     const connection = await createConnection({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'test',
-      password: 'test',
-      database: 'test'
+      name: config['db']['connection_name'],
+      type: 'postgres',
+      host: config['db']['host'],
+      port: config['db']['port'],
+      username: config['db']['username'],
+      password: config['db']['password'],
+      database: config['db']['name']
     });
   }
 }
