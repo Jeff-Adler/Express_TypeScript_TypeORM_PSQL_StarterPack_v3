@@ -15,14 +15,24 @@ export class dbConnection {
   };
 
   private async CreateConnection() {
+    //TODO: replace with .get method
+    const { connection_name, host, port, username, password, name } = config['db'];
     return createConnection({
-      name: config['db']['connection_name'],
       type: 'postgres',
-      host: config['db']['host'],
-      port: config['db']['port'],
-      username: config['db']['username'],
-      password: config['db']['password'],
-      database: config['db']['name']
+      name: connection_name,
+      host: host,
+      port: port,
+      username: username,
+      password: password,
+      database: name,
+      synchronize: true,
+      logging: false,
+      entities: ['src/entity/*.entity.ts'],
+      migrations: ['src/migration/*.ts'],
+      migrationsRun: true,
+      cli: {
+        migrationsDir: 'src/migration'
+      }
     });
   }
 
