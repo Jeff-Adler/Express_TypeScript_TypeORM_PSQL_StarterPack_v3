@@ -1,6 +1,6 @@
 import { User } from '@entity/user.entity';
 import { HttpException } from '@exceptions/HttpException';
-import { EntityTarget, getRepository } from 'typeorm';
+import { EntityTarget, FindManyOptions, getRepository, OrderByCondition } from 'typeorm';
 
 export class UserService {
   private readonly userEntity: EntityTarget<User> = User;
@@ -13,7 +13,12 @@ export class UserService {
    * ?skip=(0)
    * ?limit=(10)
    */
-  public findUsers = async (): Promise<User[]> => {
+  public findUsers = async (limit?: number, skip?: number, sortBy?: any): Promise<User[]> => {
+    let order: OrderByCondition = {};
+    // let skip: number;
+    // let take: number;
+    let findOptions: FindManyOptions<User>;
+
     const userRepository = getRepository(this.userEntity);
 
     const users: User[] = await userRepository.find();
