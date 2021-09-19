@@ -26,7 +26,7 @@ const config = convict({
     connection_name: {
       doc: 'TypeORM connection name',
       format: String,
-      default: 'development',
+      default: 'default',
       env: 'CONNECTION_NAME'
     },
     host: {
