@@ -9,6 +9,7 @@ import { IndexRoutes } from '@routes/index.route';
 import { Logger } from '@utils/logger';
 import { catchAllMiddleware } from '@middlewares/catchAllMiddleware';
 import compression from 'compression';
+import { dbConnectionObj } from '@db/connection.db';
 import { createConnection } from 'typeorm';
 
 class App {
@@ -40,7 +41,7 @@ class App {
   }
 
   private async connectToDatabase() {
-    await createConnection(`${this.dbConnectionName}`);
+    await createConnection(dbConnectionObj);
   }
 
   private initializeMiddlewares() {
