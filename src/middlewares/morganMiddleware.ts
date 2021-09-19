@@ -8,7 +8,7 @@ const stream: StreamOptions = {
 };
 
 const skip = () => {
-  const env = config['env'] || 'development';
+  const env = config.get('env') || 'development';
   return env !== 'development';
 };
 

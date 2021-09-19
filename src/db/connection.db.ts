@@ -1,7 +1,7 @@
 const config = require('@/config.js');
 import { ConnectionOptions } from 'typeorm';
 
-const { connection_name, host, port, username, password, name } = config['db'];
+const { connection_name, host, port, username, password, name } = config.get('db');
 
 export const dbConnectionObj: ConnectionOptions = {
   type: 'postgres',

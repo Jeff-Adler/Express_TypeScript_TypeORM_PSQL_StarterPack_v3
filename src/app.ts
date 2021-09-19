@@ -19,8 +19,8 @@ class App {
 
   public constructor() {
     this.app = express();
-    this.port = config['port'] || 3000;
-    this.env = config['env'] || 'development';
+    this.port = config.get('port') || 3000;
+    this.env = config.get('env') || 'development';
 
     this.env !== 'testing' && this.connectToDatabase();
     this.initializeMiddlewares();
