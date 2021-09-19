@@ -3,26 +3,24 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
+import compression from 'compression';
+import { createConnection } from 'typeorm';
 import { morganMiddleware } from '@middlewares/morganMiddleware';
 import errorMiddleware from '@middlewares/errorMiddleware';
 import { IndexRoutes } from '@routes/index.route';
 import { Logger } from '@utils/logger';
 import { catchAllMiddleware } from '@middlewares/catchAllMiddleware';
-import compression from 'compression';
-import { dbConnectionObj } from '@db/connection.db';
-import { createConnection } from 'typeorm';
+import { dbConnectionObj } from './db/connection.db';
 
 class App {
   public app: express.Application;
   public port: string | number;
   public env: string;
-  public dbConnectionName: string;
 
   public constructor() {
     this.app = express();
     this.port = config['port'] || 3000;
     this.env = config['env'] || 'development';
-    this.dbConnectionName = config['db']['connection_name'] || 'development';
 
     this.env !== 'testing' && this.connectToDatabase();
     this.initializeMiddlewares();
@@ -34,7 +32,7 @@ class App {
     this.app.listen(this.port, () => {
       Logger.info(`=================================`);
       Logger.info(`======= ENV: ${this.env} =======`);
-      Logger.info(`======= DB: ${this.dbConnectionName} =======`);
+      Logger.info(`======= DB: ${dbConnectionObj.name} =======`);
       Logger.info(`🚀 App listening on port ${this.port}`);
       Logger.info(`=================================`);
     });
