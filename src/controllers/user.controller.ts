@@ -1,5 +1,4 @@
 import { User } from '@entity/user.entity';
-import { Logger } from '@/utils/logger';
 import { UserService } from '@services/user.service';
 import { NextFunction, Request, Response } from 'express';
 
@@ -8,6 +7,8 @@ export class UserController {
 
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
+      console.log(req.query);
+
       const users: User[] = await this.userService.findUsers();
 
       return res.status(200).send(users);

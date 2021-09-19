@@ -6,10 +6,16 @@ export class UserService {
   private readonly userEntity: EntityTarget<User> = User;
 
   /**
-  TODO: add query params
+   * Retrieve users from db
+   *
+   * Valid query parameters:
+   * ?sortBy=<userField>:<ASC|DESC>
+   * ?skip=(0)
+   * ?limit=(10)
    */
   public findUsers = async (): Promise<User[]> => {
     const userRepository = getRepository(this.userEntity);
+
     const users: User[] = await userRepository.find();
 
     return users;

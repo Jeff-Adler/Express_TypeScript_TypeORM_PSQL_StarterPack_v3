@@ -6,6 +6,7 @@ import { FindUserByEmailDto } from '@dtos/findUserByEmail.dto';
 import { normalizeEmailMiddleware } from '@middlewares/normalizeEmailMiddleware';
 import { CreateUserDto } from '@dtos/createUser.dto';
 import { UpdateUserDto } from '@dtos/updateUser.dto';
+import { findUsersQueryParamsDto } from '@dtos/findUsersQueryParams.dto';
 
 export class UserRoutes implements Routes {
   readonly path: string = '/';
@@ -17,7 +18,11 @@ export class UserRoutes implements Routes {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}`, this.userController.getUsers);
+    this.router.get(
+      `${this.path}`,
+      [validationMiddleware(findUsersQueryParamsDto, 'query')],
+      this.userController.getUsers
+    );
 
     this.router.get(`${this.path}:id([0-9]+)`, this.userController.getUserById);
 
