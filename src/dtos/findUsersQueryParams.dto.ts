@@ -10,10 +10,10 @@ export class findUsersQueryParamsDto {
   @Expose()
   @IsNumber()
   @IsOptional()
-  limit!: string;
+  take!: string;
 
   //TODO: add custom validator
   @Expose()
   @IsOptional()
-  sortBy!: string;
+  order!: string;
 }
