@@ -8,13 +8,10 @@ export class UserController {
 
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      if (req.query in FindManyOptions) {
-      }
-      const findOptions: FindManyOptions<User> = {};
+      let findOptions: FindManyOptions<User> = {};
 
-      for (const queryParam in req.query) {
-        if (queryParam in FindManyOptions) {
-        }
+      if (isFindManyOption(req.query)) {
+        findOptions = <FindManyOptions>req.query;
       }
 
       const users: User[] = await this.userService.findUsers(findOptions);
