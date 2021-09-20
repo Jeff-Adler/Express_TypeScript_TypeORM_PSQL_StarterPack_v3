@@ -1,15 +1,19 @@
 import { User } from '@entity/user.entity';
 import { UserService } from '@services/user.service';
 import { NextFunction, Request, Response } from 'express';
+import { FindManyOptions } from 'typeorm';
 
 export class UserController {
   public userService: UserService = new UserService();
 
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.query);
+      const findOptions: FindManyOptions<User> = {};
 
-      const users: User[] = await this.userService.findUsers();
+      for (const queryParam in req.query) {
+      }
+
+      const users: User[] = await this.userService.findUsers(findOptions);
 
       return res.status(200).send(users);
     } catch (error) {

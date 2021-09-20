@@ -13,11 +13,20 @@ export class UserService {
    * ?skip=(0)
    * ?limit=(10)
    */
-  public findUsers = async (limit?: number, skip?: number, sortBy?: any): Promise<User[]> => {
+  public findUsers = async (findOptions: FindManyOptions<User>): Promise<User[]> => {
+    // let findOptions: FindManyOptions<User> = {};
+
+    // if (take) {
+    //   findOptions['take'] = take;
+    // }
+
+    // if (skip) {
+    //   findOptions['skip'] = skip;
+    // }
+
     let order: OrderByCondition = {};
     // let skip: number;
     // let take: number;
-    let findOptions: FindManyOptions<User>;
 
     const userRepository = getRepository(this.userEntity);
 
