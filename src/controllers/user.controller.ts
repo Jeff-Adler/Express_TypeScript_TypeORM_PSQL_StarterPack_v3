@@ -8,9 +8,13 @@ export class UserController {
 
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
+      if (req.query in FindManyOptions) {
+      }
       const findOptions: FindManyOptions<User> = {};
 
       for (const queryParam in req.query) {
+        if (queryParam in FindManyOptions) {
+        }
       }
 
       const users: User[] = await this.userService.findUsers(findOptions);
@@ -18,6 +22,10 @@ export class UserController {
       return res.status(200).send(users);
     } catch (error) {
       next(error);
+    }
+
+    function isFindManyOption(queryParams: any): queryParams is FindManyOptions {
+      return <FindManyOptions>queryParams !== undefined;
     }
   };
 
