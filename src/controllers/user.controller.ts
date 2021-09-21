@@ -9,6 +9,7 @@ export class UserController {
 
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
+      console.log(req.query);
       let findOptions: FindManyOptions<User> = extractQueryParams(req.query);
 
       console.log(findOptions);
@@ -18,18 +19,6 @@ export class UserController {
       return res.status(200).send(users);
     } catch (error) {
       next(error);
-    }
-
-    // function isFindManyOption(queryParam: any): queryParam is FindManyOptions<User> {
-    //   return <FindManyOptions>queryParam !== undefined;
-    // }
-
-    // function isOrderByCondition(queryParam: any): queryParam is OrderByCondition {
-    //   return <OrderByCondition>queryParam !== undefined;
-    // }
-
-    function isValidOrderByCondition(parts: { [columnName: string]: string }): boolean {
-      return <OrderByCondition>parts !== undefined;
     }
   };
 

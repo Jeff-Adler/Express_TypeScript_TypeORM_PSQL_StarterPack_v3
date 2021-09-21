@@ -13,5 +13,5 @@ export class findUsersQueryParamsDto {
   //TODO: add custom validator
   @Expose()
   @IsOptional()
-  order!: string;
+  order!: string | string[];
 }

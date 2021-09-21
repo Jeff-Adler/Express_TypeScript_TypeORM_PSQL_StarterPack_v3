@@ -1,6 +1,6 @@
 ### Retrieve all users
 
-GET http://localhost:8080/users?skip=1
+GET http://localhost:8080/users?order=id:ASC&order=email:DESC
 
 
 ### Retrieve user by Id
