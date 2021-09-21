@@ -2,7 +2,7 @@ import { User } from '@entity/user.entity';
 import { UserService } from '@services/user.service';
 import { NextFunction, Request, Response } from 'express';
 import { FindManyOptions, OrderByCondition } from 'typeorm';
-import { IUser } from '@interfaces/user.interface';
+import { extractQueryParams } from './helpers/extractQueryParams.helper';
 
 export class UserController {
   public userService: UserService = new UserService();
@@ -11,27 +11,21 @@ export class UserController {
     try {
       let findOptions: FindManyOptions<User> = <FindManyOptions<User>>{};
 
+      findOptions = extractQueryParams(req.query);
+
       console.log(findOptions);
 
-      if (req.query.take && parseInt(`${req.query.take}`)) {
-        findOptions['take'] = parseInt(`${req.query.take}`);
-      }
+      // if (req.query.take && parseInt(`${req.query.take}`)) {
+      //   findOptions['take'] = parseInt(`${req.query.take}`);
+      // }
 
-      if (req.query.skip && parseInt(`${req.query.skip}`)) {
-        findOptions['skip'] = parseInt(`${req.query.skip}`);
-      }
+      // if (req.query.skip && parseInt(`${req.query.skip}`)) {
+      //   findOptions['skip'] = parseInt(`${req.query.skip}`);
+      // }
 
-      if (req.query.order) {
-        let columnName: string = '';
-        let ordering: string = '';
-        const parts: string[] = (<string>req.query.order)?.split(':');
-        if (parts && parts.length >= 2) {
-          [columnName, ordering] = parts;
-        }
-        if (columnName && ordering && isValidOrderByCondition({ [columnName]: ordering.toUpperCase() })) {
-          findOptions['order'] = <OrderByCondition>{ [columnName]: ordering.toUpperCase() };
-        }
-      }
+      // if (req.query.order) {
+      //   extractQueryParams(req.query.order);
+      // }
 
       // if (req.query.order && isOrderByCondition(req.query.order)) {
       //   findOptions['order'] = req.query.order;
