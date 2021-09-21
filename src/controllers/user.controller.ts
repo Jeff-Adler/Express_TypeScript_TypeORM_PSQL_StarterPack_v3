@@ -21,19 +21,21 @@ export class UserController {
         findOptions['skip'] = parseInt(`${req.query.skip}`);
       }
 
-      let columnName: string = '';
-      let ordering: string = '';
-      const parts: string[] = (<string>req.query.order)?.split(':');
-      if (parts && parts.length >= 2) {
-        [columnName, ordering] = parts;
-      }
-      if (columnName && ordering && isValidOrderByCondition({ [columnName]: ordering.toUpperCase() })) {
-        findOptions['order'] = <OrderByCondition>{ [columnName]: ordering.toUpperCase() };
+      if (req.query.order) {
+        let columnName: string = '';
+        let ordering: string = '';
+        const parts: string[] = (<string>req.query.order)?.split(':');
+        if (parts && parts.length >= 2) {
+          [columnName, ordering] = parts;
+        }
+        if (columnName && ordering && isValidOrderByCondition({ [columnName]: ordering.toUpperCase() })) {
+          findOptions['order'] = <OrderByCondition>{ [columnName]: ordering.toUpperCase() };
+        }
       }
 
-      if (req.query.order && isOrderByCondition(req.query.order)) {
-        findOptions['order'] = req.query.order;
-      }
+      // if (req.query.order && isOrderByCondition(req.query.order)) {
+      //   findOptions['order'] = req.query.order;
+      // }
 
       // if (isFindManyOption(req.query)) {
       //   findOptions = <FindManyOptions>req.query;
@@ -46,13 +48,13 @@ export class UserController {
       next(error);
     }
 
-    function isFindManyOption(queryParam: any): queryParam is FindManyOptions<User> {
-      return <FindManyOptions>queryParam !== undefined;
-    }
+    // function isFindManyOption(queryParam: any): queryParam is FindManyOptions<User> {
+    //   return <FindManyOptions>queryParam !== undefined;
+    // }
 
-    function isOrderByCondition(queryParam: any): queryParam is OrderByCondition {
-      return <OrderByCondition>queryParam !== undefined;
-    }
+    // function isOrderByCondition(queryParam: any): queryParam is OrderByCondition {
+    //   return <OrderByCondition>queryParam !== undefined;
+    // }
 
     function isValidOrderByCondition(parts: { [columnName: string]: string }): boolean {
       return <OrderByCondition>parts !== undefined;
