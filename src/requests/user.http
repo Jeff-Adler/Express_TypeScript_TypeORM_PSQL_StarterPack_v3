@@ -1,6 +1,6 @@
 ### Retrieve all users
 
-GET http://localhost:8080/users/
+GET http://localhost:8080/users?skip=1
 
 
 ### Retrieve user by Id

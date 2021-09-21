@@ -14,23 +14,9 @@ export class UserService {
    * ?limit=(10)
    */
   public findUsers = async (findOptions: FindManyOptions<User>): Promise<User[]> => {
-    // let findOptions: FindManyOptions<User> = {};
-
-    // if (take) {
-    //   findOptions['take'] = take;
-    // }
-
-    // if (skip) {
-    //   findOptions['skip'] = skip;
-    // }
-
-    let order: OrderByCondition = {};
-    // let skip: number;
-    // let take: number;
-
     const userRepository = getRepository(this.userEntity);
 
-    const users: User[] = await userRepository.find();
+    const users: User[] = await userRepository.find(findOptions);
 
     return users;
   };
