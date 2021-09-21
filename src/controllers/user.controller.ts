@@ -9,31 +9,9 @@ export class UserController {
 
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      let findOptions: FindManyOptions<User> = <FindManyOptions<User>>{};
-
-      findOptions = extractQueryParams(req.query);
+      let findOptions: FindManyOptions<User> = extractQueryParams(req.query);
 
       console.log(findOptions);
-
-      // if (req.query.take && parseInt(`${req.query.take}`)) {
-      //   findOptions['take'] = parseInt(`${req.query.take}`);
-      // }
-
-      // if (req.query.skip && parseInt(`${req.query.skip}`)) {
-      //   findOptions['skip'] = parseInt(`${req.query.skip}`);
-      // }
-
-      // if (req.query.order) {
-      //   extractQueryParams(req.query.order);
-      // }
-
-      // if (req.query.order && isOrderByCondition(req.query.order)) {
-      //   findOptions['order'] = req.query.order;
-      // }
-
-      // if (isFindManyOption(req.query)) {
-      //   findOptions = <FindManyOptions>req.query;
-      // }
 
       const users: User[] = await this.userService.findUsers(findOptions);
 

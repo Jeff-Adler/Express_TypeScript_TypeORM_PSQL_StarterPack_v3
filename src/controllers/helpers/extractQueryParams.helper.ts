@@ -1,7 +1,7 @@
 import { FindManyOptions, OrderByCondition } from 'typeorm';
 import { User } from '@entity/user.entity';
 
-export const extractQueryParams = (query: { [key: string]: any }) => {
+export const extractQueryParams = (query: any) => {
   let findOptions: FindManyOptions<User> = <FindManyOptions<User>>{};
 
   function containsOnlyDigits(string: string): boolean {
