@@ -13,15 +13,21 @@ export const extractQueryParams = (query: { [key: string]: undefined | string | 
   }
 
   if (query.order) {
-    let columnName: string = '';
-    let ordering: string = '';
-    const parts: string[] = (<string>query.order)?.split(':');
-    if (parts && parts.length >= 2) {
-      [columnName, ordering] = parts;
+    if (!Array.isArray(query.order)) {
+      query.order = [query.order];
     }
-    if (columnName && ordering && isValidOrderByCondition({ [columnName]: ordering.toUpperCase() })) {
-      findOptions['order'] = <OrderByCondition>{ [columnName]: ordering.toUpperCase() };
+    for (const orderCondition of query.order) {
+      findOptions['order'] = { ...findOptions['order'], ...extractOrderParam(orderCondition) };
     }
+    // let columnName: string = '';
+    // let ordering: string = '';
+    // const parts: string[] = (<string>query.order)?.split(':');
+    // if (parts && parts.length >= 2) {
+    //   [columnName, ordering] = parts;
+    // }
+    // if (columnName && ordering && isValidOrderByCondition({ [columnName]: ordering.toUpperCase() })) {
+    //   findOptions['order'] = <OrderByCondition>{ [columnName]: ordering.toUpperCase() };
+    // }
   }
 
   function containsOnlyDigits(string: string): boolean {
