@@ -6,7 +6,7 @@ GET http://localhost:8080/users?order=id:DESC&order=email:ASC&skip=1
 
 ### Retrieve user by Id
 
-GET http://localhost:8080/users/117
+GET http://localhost:8080/users/145
 
 ### Retrieve user by email: valid request
 
@@ -22,7 +22,7 @@ POST http://localhost:8080/auth/register
 Content-Type: application/json
 
 {
-  "email" : "JEFFFfgaegsaergFFFFF@test.com",
+  "email" : "JEFFFfgaegverg@test.com",
   "password" : "12345678"
 }
 

@@ -27,4 +27,25 @@ export class AuthService {
 
     return user;
   }
+
+  public async login(userData: CreateUserDto): Promise<User> {
+    const userRepository = getRepository(this.userEntity);
+    const { email, password } = userData;
+
+    const user = await userRepository.findOne({ email });
+
+    if (!user) {
+      throw new HttpException(404, `User of email ${email} not found`);
+    }
+
+    console.log(user.password);
+
+    const isPasswordMatching: boolean = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordMatching) {
+      throw new HttpException(404, 'Invalid password');
+    }
+
+    return user;
+  }
 }

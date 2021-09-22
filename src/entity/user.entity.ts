@@ -22,7 +22,7 @@ export class User implements IUser {
   @IsEmail()
   email!: string;
 
-  @Column({ select: false })
+  @Column()
   @MinLength(8)
   password!: string;
 
