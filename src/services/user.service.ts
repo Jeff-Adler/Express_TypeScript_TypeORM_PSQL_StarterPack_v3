@@ -9,9 +9,9 @@ export class UserService {
    * Retrieve users from db
    *
    * Valid query parameters:
-   * ?sortBy=<userField>:<ASC|DESC>
+   * ?order=<userField>:<ASC|DESC>
    * ?skip=(0)
-   * ?limit=(10)
+   * ?take=(10)
    */
   public findUsers = async (findOptions: FindManyOptions<User>): Promise<User[]> => {
     const userRepository = getRepository(this.userEntity);

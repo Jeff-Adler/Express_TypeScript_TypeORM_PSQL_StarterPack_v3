@@ -7,12 +7,15 @@ import { extractQueryParams } from './helpers/extractQueryParams.helper';
 export class UserController {
   public userService: UserService = new UserService();
 
+  /**
+   * Valid query parameters:
+   * ?order=<userField>:<ASC|DESC>
+   * ?skip=(0)
+   * ?take=(10)
+   */
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.query);
       let findOptions: FindManyOptions<User> = extractQueryParams(req.query);
-
-      console.log(findOptions);
 
       const users: User[] = await this.userService.findUsers(findOptions);
 
