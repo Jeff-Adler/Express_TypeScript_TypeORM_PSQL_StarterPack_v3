@@ -34,12 +34,6 @@ export class User implements IUser {
   @UpdateDateColumn()
   updatedAt!: Date;
 
-  // @BeforeInsert()
-  // @BeforeUpdate()
-  // async validate() {
-  //   await validateOrReject(this);
-  // }
-
   @BeforeUpdate()
   @BeforeInsert()
   normalizeEmail() {

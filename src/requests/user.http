@@ -3,6 +3,7 @@
 GET http://localhost:8080/users?order=id:DESC&order=email:ASC&skip=1
 
 
+
 ### Retrieve user by Id
 
 GET http://localhost:8080/users/117
@@ -14,6 +15,16 @@ GET http://localhost:8080/users/search?email=jeff@test.com
 ### Retrieve user by email: invalid request
 
 GET http://localhost:8080/users/search?email=testtest.com
+
+### Register new user
+
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "email" : "JEFFFfgaegsaergFFFFF@test.com",
+  "password" : "12345678"
+}
 
 ### Create new user: valid request
 
