@@ -1,6 +1,7 @@
 const config = require('@/config.js');
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import compression from 'compression';
@@ -45,6 +46,7 @@ class App {
   private initializeMiddlewares() {
     this.app.use(compression());
     this.app.use(cors());
+    this.app.use(cookieParser());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(helmet());
