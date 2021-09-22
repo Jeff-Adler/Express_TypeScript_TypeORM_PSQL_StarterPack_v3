@@ -15,7 +15,7 @@ export class UserController {
    */
   public getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      let findOptions: FindManyOptions<User> = extractQueryParams(req.query);
+      const findOptions: FindManyOptions<User> = extractQueryParams(req.query);
 
       const users: User[] = await this.userService.findUsers(findOptions);
 

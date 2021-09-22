@@ -5,14 +5,6 @@ import { EntityTarget, FindManyOptions, getRepository, OrderByCondition } from '
 export class UserService {
   private readonly userEntity: EntityTarget<User> = User;
 
-  /**
-   * Retrieve users from db
-   *
-   * Valid query parameters:
-   * ?order=<userField>:<ASC|DESC>
-   * ?skip=(0)
-   * ?take=(10)
-   */
   public findUsers = async (findOptions: FindManyOptions<User>): Promise<User[]> => {
     const userRepository = getRepository(this.userEntity);
 
