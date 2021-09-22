@@ -10,7 +10,7 @@ export class seeds1631562818169 implements MigrationInterface {
     // Wipe database
     for (const entity of entities) {
       const repository = dbConnection.getRepository(entity.name);
-      await repository.clear();
+      await repository.delete({});
     }
 
     // Seed test user
@@ -32,7 +32,7 @@ export class seeds1631562818169 implements MigrationInterface {
     // Wipe database
     for (const entity of entities) {
       const repository = dbConnection.getRepository(entity.name);
-      await repository.clear();
+      await repository.delete({});
     }
   }
 }
