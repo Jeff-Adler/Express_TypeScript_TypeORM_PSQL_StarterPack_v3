@@ -3,7 +3,7 @@ import { getConnection, MigrationInterface, QueryRunner } from 'typeorm';
 
 export class seeds1631562818169 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    const dbConnection = getConnection('development');
+    const dbConnection = getConnection();
     // Get all entities
     const entities = dbConnection.entityMetadatas;
 
@@ -25,7 +25,7 @@ export class seeds1631562818169 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const dbConnection = getConnection('development');
+    const dbConnection = getConnection();
     // Get all entities
     const entities = dbConnection.entityMetadatas;
 
