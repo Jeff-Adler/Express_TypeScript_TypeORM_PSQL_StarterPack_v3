@@ -8,6 +8,7 @@ import { EntityTarget, getRepository } from 'typeorm';
 import { UserService } from './user.service';
 import { TokenData } from '@interfaces/tokenData.interface';
 import { DataStoredInToken } from '@interfaces/dataStoredInToken.interface';
+import { IUser } from '@interfaces/user.interface';
 
 export class AuthService {
   private readonly userService: UserService = new UserService();
@@ -46,6 +47,22 @@ export class AuthService {
 
     if (!isPasswordMatching) {
       throw new HttpException(404, 'Invalid password');
+    }
+
+    return user;
+  }
+
+  public async logout(userData: IUser): Promise<User> {
+    if (!Object.keys(userData).length) {
+      throw new HttpException(404, 'Invalid request');
+    }
+
+    const userRepository = getRepository(this.userEntity);
+    const user: User | undefined = await userRepository.findOne({
+      where: { email: userData.email, password: userData.password }
+    });
+    if (!user) {
+      throw new HttpException(404, 'Could not find user');
     }
 
     return user;
