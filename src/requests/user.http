@@ -26,25 +26,6 @@ Content-Type: application/json
   "password" : "12345678"
 }
 
-### Create new user: valid request
-
-POST http://localhost:8080/users/
-Content-Type: application/json
-
-{
-  "email" : "JEFFFfgaegsFFFFF@test.com",
-  "password" : "12345678"
-}
-
-### Create new user: invalid request
-
-POST http://localhost:8080/users/
-Content-Type: application/json
-
-{
-  "email" : "test@test.com",
-  "password" : "12345678"
-}
 
 ### Patch user: valid request
 

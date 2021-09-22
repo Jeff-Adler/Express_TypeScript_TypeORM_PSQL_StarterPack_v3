@@ -22,6 +22,13 @@ const config = convict({
     env: 'PORT',
     arg: 'port'
   },
+  secret_key: {
+    doc: 'Secret Key for JWT ',
+    format: String,
+    default: '',
+    env: 'PORT',
+    sensitive: true
+  },
   db: {
     connection_name: {
       doc: 'TypeORM connection name',

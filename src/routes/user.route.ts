@@ -32,9 +32,6 @@ export class UserRoutes implements Routes {
       this.userController.getUserByEmail
     );
 
-    //TODO: Eliminate this route
-    this.router.post(`${this.path}`, [validationMiddleware(CreateUserDto, 'body')], this.userController.createUser);
-
     this.router.patch(
       `${this.path}:id([0-9]+)`,
       [validationMiddleware(UpdateUserDto, 'body')],

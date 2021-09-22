@@ -13,6 +13,9 @@ export class AuthController {
     try {
       const user: User = await this.authService.register(createUserData);
 
+      const tokenData = this.authService.createToken(user);
+
+      res.setHeader('Set-Cookie', [this.authService.createCookie(tokenData)]);
       return res.status(200).send(user);
     } catch (error) {
       next(error);
