@@ -42,7 +42,9 @@ export class UserService {
     await userRepository.save(user);
 
     // Necessary extra step to hide password
-    return userRepository.findOne(user.id);
+    const foundUser = await userRepository.findOne(user.id);
+
+    return foundUser;
   };
 
   updateUser = async (id: number, attrs: Partial<User>) => {
