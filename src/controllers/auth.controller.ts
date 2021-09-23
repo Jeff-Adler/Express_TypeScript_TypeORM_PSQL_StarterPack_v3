@@ -32,6 +32,7 @@ export class AuthController {
     }
   };
 
+  // TODO: Add token blacklist, so that the token becomes invalid as soon as user is logged out, even if not expired.
   public logout = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
     try {
       const userData: IUser = req.user!;
