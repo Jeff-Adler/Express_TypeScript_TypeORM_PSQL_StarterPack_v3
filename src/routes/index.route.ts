@@ -1,8 +1,8 @@
 import { Router, Request, Response } from 'express';
 import IndexController from '@controllers/index.controller';
 import { Routes } from '@interfaces/routes.interface';
-import { UserRoutes } from './user.route';
-import { AuthRoutes } from './auth.route';
+import { UserRoutes } from '@routes/user.route';
+import { AuthRoutes } from '@routes/auth.route';
 
 export class IndexRoutes implements Routes {
   readonly path = '/';
