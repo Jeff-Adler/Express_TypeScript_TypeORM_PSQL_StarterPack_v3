@@ -1,7 +1,8 @@
 const config = require('@/config.js');
 
-const { connection_name, host, port, username, password, name } = config.get('db');
+const { host, port, username, password, name } = config.get('db');
 
+// This file is only to enable the TypeORM migrations. config.js should be used for app initialization.
 module.exports = [
   {
     type: 'postgres',
