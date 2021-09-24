@@ -15,6 +15,7 @@ export class UserService {
 
   public findUserById = async (id: number): Promise<User> => {
     const userRepository = getRepository(this.userEntity);
+
     const user: User | undefined = await userRepository.findOne(id);
 
     if (!user) {
@@ -37,6 +38,7 @@ export class UserService {
 
   createUser = async (email: string, password: string) => {
     const userRepository = getRepository(this.userEntity);
+
     let user = userRepository.create({ email, password });
 
     await userRepository.save(user);
@@ -48,6 +50,10 @@ export class UserService {
   };
 
   updateUser = async (id: number, attrs: Partial<User>) => {
+    if (!Object.keys(attrs).length) {
+      throw new HttpException(400, 'Nothing to update');
+    }
+
     const userRepository = getRepository(this.userEntity);
 
     const user: User | undefined = await userRepository.findOne(id);
