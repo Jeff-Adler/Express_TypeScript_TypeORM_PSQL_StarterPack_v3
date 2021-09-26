@@ -6,5 +6,9 @@
     "host": "127.0.0.1",
     "username": "jeffadler",
     "name": "starterpack_dev"
+  },
+  "cors": {
+    "origin": true,
+    "credentials": true
   }
 }
