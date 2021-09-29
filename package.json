@@ -59,6 +59,11 @@
     "typeorm": "^0.2.37",
     "winston": "^3.3.3"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.js": [
       "eslint --cache --fix",
