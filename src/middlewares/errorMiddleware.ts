@@ -6,7 +6,7 @@ const errorMiddleware = (error: HttpException, req: Request, res: Response, next
   try {
     const status: number = error.status || 500;
     const message: string = error.message || 'Something went wrong';
-    const stack: string = error.stack || 'No stack trace';
+            const stack: string = error.stack || 'No stack trace';
 
     Logger.error(`[${req.method}] ${req.path} >> StatusCode:: ${status}, Message:: ${message}\n Stack:: ${stack}`);
     res.status(status).json({ message });
