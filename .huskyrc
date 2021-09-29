@@ -1,5 +1,5 @@
-"husky": {
+  "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "lint-staged"
     }
-}
+  },
