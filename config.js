@@ -1,6 +1,7 @@
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, `./envs/.env.${process.env.ENVIRONMENT}`) });
-const convict = require('convict');
+import { resolve } from 'path';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config({ path: resolve(__dirname, `./envs/.env.${process.env.ENVIRONMENT}`) });
+import convict from 'convict';
 
 const config = convict({
   env: {
@@ -89,4 +90,4 @@ config.loadFile(`./config/${env}.json`);
 
 config.validate({ allowed: 'strict' });
 
-module.exports = config;
+export default convict;

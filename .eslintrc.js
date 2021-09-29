@@ -1,26 +1,19 @@
 module.exports = {
   env: {
-    browser: true,
     commonjs: true,
     es2021: true,
+    node: true
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: 'module'
   },
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['prettier'],
   rules: {
-    'prettier/prettier': [
-      1,
-      {
-        trailingComma: 'es5',
-        singleQuote: true,
-        semi: false,
-      },
-    ],
-    ...require('eslint-config-prettier').rules,
-    ...require('eslint-config-prettier/@typescript-eslint').rules,
-  },
+    'prettier/prettier': 'error',
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    ...require('eslint-config-prettier').rules
+  }
 };
